@@ -11,14 +11,14 @@
             text-align: center;
         }
 
-        .Wrapper {
+        #Wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            flex-flow: column;
         }
 
-        .container {
+        #container {
             display: flex;
             justify-content: center;
             margin: 10px;
@@ -28,13 +28,8 @@
 
 <p class="title">TESTING MY OWN USE STATE</p>
 
-<div class="Wrapper">
-    <div id="WTF"></div>
-    <div id="NAME_STATE"></div>
-    <div class="container">
-        <input id="TXT" type="text">
-        <button id="DECREASE">DECREASE</button>
-        <button id="INCREASE">INCREASE</button>
+<div id="Wrapper">
+    <div id="container">
         <button id="TOGGLE">TOGGLE</button>
     </div>
 </div>

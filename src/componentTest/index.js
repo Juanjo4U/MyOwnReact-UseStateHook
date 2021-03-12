@@ -1,34 +1,40 @@
 import { React } from "../myOwnModules/index.js";
+import { createAndDelete } from "../utils/dom.js";
+
+let autofocus = false;
 
 const Test = (props) => {
     //console.log("PROPS: ", props)
     const [counter, setCounter] = React.useState(0);
     const [name, setName] = React.useState();
 
-    document.querySelector('#WTF').innerHTML = counter;
-    document.querySelector('#NAME_STATE').innerHTML = name || '';
+    const increase = () => setCounter(counter + 1);
+    const decrease = () => setCounter(counter - 1);
+    const changeName = n => { autofocus = true; setName(n); }
 
-    return {
-        increase: () => setCounter(counter + 1),
-        decrease: () => setCounter(counter - 1),
-        changeName: n => setName(n),
-    }
+    createAndDelete('NAME_STATE', 'Wrapper').innerHTML = name || '';
+    createAndDelete('COUNTER', 'Wrapper').innerHTML = counter;
+    createAndDelete('INCREASE', 'container', 'button', 'click', increase).innerHTML = 'INCREASE';
+    createAndDelete('DECREASE', 'container', 'button', 'click', decrease).innerHTML = 'DECREASE';
+    createAndDelete('TXT', 'container', 'input', 'input', ({ target }) => changeName(target.value), undefined, autofocus);
+
+    autofocus = false;
+
 }
 
 const ToggleTest = () => {
-    const [isVisible, setVisible] = React.useState(false);
-    document.querySelector('#TOGGLE').innerHTML = isVisible + '';
-    return {
-        toggle: () => setVisible(!isVisible)
-    }
+    const [isDarkMode, setDarkmode] = React.useState(false);
+
+    const toggle = () => setDarkmode(!isDarkMode)
+
+    const text = isDarkMode ? 'lightMode' : 'darkMode';
+    const background = isDarkMode ? 'black' : 'white';
+    const color = isDarkMode ? 'white' : 'black';
+
+    createAndDelete('TOGGLE', 'container', 'button', 'click', toggle, true).innerHTML = text.toLocaleUpperCase();
+    document.querySelector('body').setAttribute('style', `background: ${background}; color: ${color}`);
+
 }
 
-
 React.registerComponent('test', Test)({ gg: 'GG_PROP' }); // SECOND ARGUMENT TO PASS PROPS
-
 React.registerComponent('toggleTest', ToggleTest)();
-
-document.querySelector('#INCREASE').addEventListener('click', () => React.App.test.increase());
-document.querySelector('#DECREASE').addEventListener('click', () => React.App.test.decrease());
-document.querySelector('#TXT').addEventListener('input', ({ target }) => React.App.test.changeName(target.value));
-document.querySelector('#TOGGLE').addEventListener('click', () => React.App.toggleTest.toggle());
