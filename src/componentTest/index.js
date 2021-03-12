@@ -4,7 +4,7 @@ import { createAndDelete } from "../utils/dom.js";
 let autofocus = false;
 
 const Test = (props) => {
-    //console.log("PROPS: ", props)
+    console.log("PROPS: ", props)
     const [counter, setCounter] = React.useState(0);
     const [name, setName] = React.useState();
 
@@ -36,5 +36,7 @@ const DarkModeTest = () => {
 
 }
 
-React.registerComponent(Test)({ gg: 'GG_PROP' }); // SECOND ARGUMENT TO PASS PROPS
+const TEST_REACT_COMPONENT = React.registerComponent(Test) // RETURNS A FUNCTIOn WHERE YOU CAN PASS ARGUMETS (PARAMS). FOR EXAPLE PROPS
+TEST_REACT_COMPONENT({ testProp: 'GG_PROP' }); // HERE WE PASS PROPS
+
 React.registerComponent(DarkModeTest)();

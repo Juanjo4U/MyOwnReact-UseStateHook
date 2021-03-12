@@ -17,7 +17,7 @@ export default (() => {
         lastIndexRegistered = index;
         index++;
 
-        return component
+        return component;
     }
 
     const useState = (initialState) => {
@@ -26,19 +26,18 @@ export default (() => {
             lastIndexState: 0,
             prevState: [],
             ...lastComponent?.useState || {}
-        }
+        };
         const prevStateIndex = lastComponent.useState.lastIndexState;
-        let prevState = lastComponent.useState.prevState[prevStateIndex];
+        const prevState = lastComponent.useState.prevState[prevStateIndex];
         let state = prevState ?? initialState;
         lastComponent.useState.prevState[prevStateIndex] = state;
         lastComponent.useState.lastIndexState++;
         const setState = (nextState) => {
-            if (nextState === state) return
+            if (nextState === state) return;
+            state = nextState;
             lastComponent.useState.prevState[prevStateIndex] = nextState;
-            prevState = nextState;
-            state = nextState
-            components[lastIndexRegistered] = lastComponent;
             lastComponent.useState.lastIndexState = 0;
+            components[lastIndexRegistered] = lastComponent;
             components[lastIndexRegistered].component();
         }
         return [state, setState];
