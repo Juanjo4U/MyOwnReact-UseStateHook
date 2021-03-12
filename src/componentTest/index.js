@@ -22,7 +22,7 @@ const Test = (props) => {
 
 }
 
-const ToggleTest = () => {
+const DarkModeTest = () => {
     const [isDarkMode, setDarkmode] = React.useState(false);
 
     const toggle = () => setDarkmode(!isDarkMode)
@@ -36,5 +36,5 @@ const ToggleTest = () => {
 
 }
 
-React.registerComponent('test', Test)({ gg: 'GG_PROP' }); // SECOND ARGUMENT TO PASS PROPS
-React.registerComponent('toggleTest', ToggleTest)();
+React.registerComponent(Test)({ gg: 'GG_PROP' }); // SECOND ARGUMENT TO PASS PROPS
+React.registerComponent(DarkModeTest)();

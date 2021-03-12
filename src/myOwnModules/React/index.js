@@ -1,16 +1,15 @@
 export default (() => {
-    const App = {};
     const components = [];
     let index = 0;
     let lastIndexRegistered = 0;
 
-    const registerComponent = (key, myComponent) => {
+    const registerComponent = (myComponent) => {
         const componentIndex = index; // USE TO UNMOUNT
         let componentArgs = [];
 
         const component = (...args) => {
             if (args.length && componentIndex + 1 === index) componentArgs = args;
-            App[key] = myComponent(...componentArgs);
+            myComponent(...componentArgs);
         }
 
         components[componentIndex] = { component };
@@ -46,7 +45,6 @@ export default (() => {
     }
 
     return {
-        App,
         registerComponent,
         useState
     }
