@@ -10,17 +10,34 @@
         .title {
             text-align: center;
         }
+
+        .Wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
     </STYle>
 </head>
 
-<p class="title">TESTING MY OWN REACT</p>
+<p class="title">TESTING MY OWN USE STATE</p>
 
-<div id="WTF"></div>
-<div id="NAME_STATE"></div>
-<input id="TXT" type="text">
-<button id="DECREASE">DECREASE</button>
-<button id="INCREASE">INCREASE</button>
-<button id="TOGGLE">TOGGLE</button>
+<div class="Wrapper">
+    <div id="WTF"></div>
+    <div id="NAME_STATE"></div>
+    <div class="container">
+        <input id="TXT" type="text">
+        <button id="DECREASE">DECREASE</button>
+        <button id="INCREASE">INCREASE</button>
+        <button id="TOGGLE">TOGGLE</button>
+    </div>
+</div>
 
 <body>
     <script type="module" src="./src/componentTest/index.js" defer></script>
