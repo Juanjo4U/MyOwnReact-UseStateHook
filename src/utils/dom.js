@@ -9,14 +9,12 @@ export const createAndDelete = (id, idContainer, type = 'div', listener, onListe
     const container = document.querySelector(`#${idContainer}`);
     element = document.createElement(type);
     element.setAttribute('id', id);
-    if (type === 'input') {
-        if (prevValue) {
-            element.value = prevValue;
-            element.autofocus = autofocus;
-        }
-    }
     if (listener && onListener) element.addEventListener(listener, onListener);
     if (insertLast) container.appendChild(element);
     else container.insertBefore(element, container.firstChild);
-    return element
+    if (type === "input" && prevValue) {
+        element.value = prevValue;
+        if (autofocus) element.focus();
+    }
+    return element;
 }
